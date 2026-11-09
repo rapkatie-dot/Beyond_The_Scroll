@@ -1,0 +1,835 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beyond the Scroll | Digital Wellness</title>
+
+  <style>
+    :root {
+      --navy: #171e42;
+      --purple: #8570dc;
+      --lavender: #bbaaff;
+      --light: #f5f3ff;
+      --teal: #168477;
+      --white: #ffffff;
+      --text: #252944;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f1f8;
+      color: var(--text);
+    }
+
+    header {
+      background: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-weight: bold;
+      color: var(--navy);
+      letter-spacing: 1px;
+    }
+
+    .step-label {
+      font-size: 13px;
+      color: #5c6078;
+    }
+
+    .progress-nav {
+      display: flex;
+      gap: 6px;
+      padding: 14px 7%;
+    }
+
+    .progress-nav div {
+      flex: 1;
+      height: 6px;
+      border-radius: 8px;
+      background: #d8d7e6;
+    }
+
+    .progress-nav .active {
+      background: var(--purple);
+    }
+
+    main {
+      max-width: 950px;
+      min-height: 520px;
+      margin: 15px auto;
+      padding: 35px;
+      background: linear-gradient(135deg, #171e42, #34366d);
+      color: white;
+      border-radius: 22px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    p { line-height: 1.6; }
+
+    .muted { color: #d1d5ec; }
+
+    .center { text-align: center; }
+
+    .welcome {
+      max-width: 570px;
+      margin: 45px auto;
+    }
+
+    .illustration {
+      font-size: 65px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      background: var(--lavender);
+      color: #191b40;
+      border: none;
+      border-radius: 11px;
+      padding: 13px 20px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 5px;
+      min-height: 44px;
+    }
+
+    button:hover { background: #d3c8ff; }
+
+    button:focus-visible, input:focus-visible {
+      outline: 3px solid #ffda70;
+      outline-offset: 3px;
+    }
+
+    .secondary {
+      background: white;
+      color: var(--navy);
+    }
+
+    .outline {
+      background: transparent;
+      color: white;
+      border: 1px solid #a8b0d3;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .card {
+      background: white;
+      color: var(--text);
+      border-radius: 15px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      font-size: 28px;
+      margin: 8px 0;
+    }
+
+    .card p {
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .study-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+    .assignment {
+      background: white;
+      color: var(--text);
+      padding: 25px;
+      border-radius: 15px;
+    }
+
+    .bar {
+      height: 13px;
+      background: #e0e2ee;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--purple);
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .phone {
+      background: #10152d;
+      border: 6px solid #080d20;
+      border-radius: 27px;
+      padding: 20px;
+      min-height: 290px;
+      max-width: 270px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .notification {
+      display: block;
+      width: 100%;
+      background: #e9e5ff;
+      text-align: left;
+      margin: 10px 0;
+    }
+
+    .feed {
+      background: #3d4778;
+      padding: 15px;
+      border-radius: 12px;
+      margin: 15px 0;
+      line-height: 2;
+    }
+
+    .actions {
+      margin-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tip {
+      background: white;
+      color: var(--text);
+      border-radius: 13px;
+      margin: 12px 0;
+      padding: 18px;
+    }
+
+    .tip button {
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      margin: 0;
+      color: var(--text);
+    }
+
+    .tip-content {
+      margin-top: 15px;
+      line-height: 1.6;
+    }
+
+    .habit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      color: var(--text);
+      border-radius: 12px;
+      padding: 17px;
+      margin: 12px 0;
+      cursor: pointer;
+    }
+
+    .habit input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--purple);
+    }
+
+    .message {
+      background: white;
+      color: var(--text);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .small { font-size: 13px; }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #62667b;
+      font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+      main {
+        margin: 10px;
+        padding: 23px;
+      }
+
+      .cards, .study-layout {
+        grid-template-columns: 1fr;
+      }
+
+      header { padding: 15px; }
+
+      .progress-nav { padding: 12px 15px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bar-fill { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">◉ BEYOND THE SCROLL</div>
+    <div id="stepLabel" class="step-label">Step 1 of 5</div>
+  </header>
+
+  <div class="progress-nav" id="progressNav"
+       aria-label="Experience progress"></div>
+
+  <main id="app" aria-live="polite"></main>
+
+  <footer>
+    Interactive Digital Wellness Prototype |
+    Social Media Overreliance in College Students
+  </footer>
+
+  <script>
+    let currentPage = 0;
+    let assignmentProgress = 0;
+    let distractions = 0;
+    let minutesLost = 0;
+    let actions = 0;
+    let focusMode = false;
+    let viewingFeed = false;
+    let selectedHabits = [];
+
+    const app = document.getElementById("app");
+
+    const habits = [
+      "Turn off nonessential notifications",
+      "Put my phone away while studying",
+      "Use scheduled social media breaks",
+      "Check my screen time weekly"
+    ];
+
+    const tips = [
+      {
+        title: "Enable Focus Mode",
+        icon: "🔕",
+        description:
+          "Silence nonessential notifications while studying. Try working for 25 minutes without interruptions."
+      },
+      {
+        title: "Set Screen Time Limits",
+        icon: "⏱️",
+        description:
+          "Set realistic daily limits for social media apps and review your usage patterns."
+      },
+      {
+        title: "Schedule Phone-Free Study Sessions",
+        icon: "📚",
+        description:
+          "Keep your phone out of reach while completing assignments. Plan a short break afterward."
+      }
+    ];
+
+    function updateNavigation() {
+      document.getElementById("stepLabel").textContent =
+        `Step ${currentPage + 1} of 5`;
+
+      document.getElementById("progressNav").innerHTML =
+        Array.from({ length: 5 }, (_, index) => `
+          <div class="${index <= currentPage ? "active" : ""}">
+          </div>
+        `).join("");
+    }
+
+    function navigate(page) {
+      currentPage = page;
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function render() {
+      updateNavigation();
+
+      if (currentPage === 0) renderWelcome();
+      if (currentPage === 1) renderSimulation();
+      if (currentPage === 2) renderResults();
+      if (currentPage === 3) renderHabits();
+      if (currentPage === 4) renderActionPlan();
+    }
+
+    // SCREEN 1: WELCOME
+
+    function renderWelcome() {
+      app.innerHTML = `
+        <section class="welcome center">
+          <div class="illustration">📱 ✦ 📚</div>
+
+          <p style="color:#c4b5ff; font-weight:bold;">
+            YOUR ATTENTION MATTERS
+          </p>
+
+          <h1>Beyond the Scroll.</h1>
+
+          <p class="muted">
+            How much is social media affecting your focus?
+            Experience a realistic study session, make
+            choices, and discover healthier digital habits.
+          </p>
+
+          <button onclick="navigate(1)">
+            Start the Experience →
+          </button>
+
+          <p class="small muted">
+            No account required · 3–5 minute experience
+          </p>
+        </section>
+      `;
+    }
+
+    // SCREEN 2: INTERACTIVE STUDY SIMULATION
+
+    function renderSimulation() {
+      app.innerHTML = `
+        <section>
+          <p class="small muted">02 / STUDY SIMULATION</p>
+          <h2>Can you stay focused?</h2>
+
+          <p class="muted">
+            You have an assignment due soon.
+            Choose whether to continue studying or
+            check your phone. Complete five actions
+            to see your results.
+          </p>
+
+          <div class="study-layout">
+
+            <div class="assignment">
+              <h3>📖 Research Assignment</h3>
+              <p>Due tonight at 11:59 PM</p>
+
+              <h3>${assignmentProgress}% Complete</h3>
+
+              <div class="bar">
+                <div class="bar-fill"
+                     style="width:${assignmentProgress}%">
+                </div>
+              </div>
+
+              <p style="margin-top:25px;">
+                <strong>Distractions:</strong> ${distractions}
+              </p>
+
+              <p>
+                <strong>Simulated time lost:</strong>
+                ${minutesLost} minutes
+              </p>
+
+              <p>
+                <strong>Actions:</strong> ${actions}/5
+              </p>
+            </div>
+
+            <div class="phone">
+              <p class="small">
+                9:41 · Focus Mode
+                ${focusMode ? "ON" : "OFF"}
+              </p>
+
+              <div style="font-size:45px;">📱</div>
+
+              ${
+                viewingFeed
+                  ? `
+                    <h3>Social Media Feed</h3>
+
+                    <div class="feed">
+                      ✨ Campus highlights<br>
+                      🎬 Trending videos<br>
+                      💬 New comments
+                    </div>
+
+                    <button class="secondary"
+                            onclick="closeFeed()">
+                      Return to Studying
+                    </button>
+                  `
+                  : focusMode
+                  ? `
+                    <p>🔕 Notifications Silenced</p>
+                    <p class="small">
+                      You can focus without interruptions.
+                    </p>
+                  `
+                  : `
+                    <button class="notification"
+                            onclick="checkNotification()">
+                      💬 New post from a friend<br>
+                      <span class="small">
+                        Tap to check →
+                      </span>
+                    </button>
+                  `
+              }
+            </div>
+
+          </div>
+
+          <div class="actions">
+            <button onclick="continueStudying()">
+              📖 Continue Studying
+            </button>
+
+            <button class="secondary"
+                    onclick="toggleFocusMode()">
+              ${focusMode
+                ? "🔔 Turn Focus Off"
+                : "🔕 Turn Focus On"}
+            </button>
+
+            <button class="outline"
+                    onclick="navigate(2)">
+              See Results →
+            </button>
+          </div>
+
+          <p class="small muted">
+            Each study action adds 20% progress.
+            Checking a notification adds one distraction
+            and five simulated minutes.
+          </p>
+        </section>
+      `;
+    }
+
+    function continueStudying() {
+      if (viewingFeed) {
+        viewingFeed = false;
+      }
+
+      assignmentProgress = Math.min(
+        100,
+        assignmentProgress + 20
+      );
+
+      actions++;
+
+      if (actions >= 5) {
+        navigate(2);
+      } else {
+        renderSimulation();
+      }
+    }
+
+    function checkNotification() {
+      if (focusMode || viewingFeed) return;
+
+      distractions++;
+      minutesLost += 5;
+      actions++;
+      viewingFeed = true;
+
+      renderSimulation();
+    }
+
+    function closeFeed() {
+      viewingFeed = false;
+
+      if (actions >= 5) {
+        navigate(2);
+      } else {
+        renderSimulation();
+      }
+    }
+
+    function toggleFocusMode() {
+      focusMode = !focusMode;
+      viewingFeed = false;
+      renderSimulation();
+    }
+
+    // SCREEN 3: RESULTS DASHBOARD
+
+    function renderResults() {
+      app.innerHTML = `
+        <section>
+          <p class="small muted">03 / YOUR RESULTS</p>
+          <h2>Your Study Session</h2>
+
+          <p class="muted">
+            See how your decisions affected your
+            simulated study session.
+          </p>
+
+          <div class="cards">
+
+            <div class="card center">
+              <p>Assignment Completed</p>
+              <h3>${assignmentProgress}%</h3>
+            </div>
+
+            <div class="card center">
+              <p>Social Media Distractions</p>
+              <h3>${distractions}</h3>
+            </div>
+
+            <div class="card center">
+              <p>Simulated Minutes Lost</p>
+              <h3>${minutesLost}</h3>
+            </div>
+
+          </div>
+
+          <div class="card">
+            <h3 style="font-size:20px;">
+              Assignment Progress
+            </h3>
+
+            <div class="bar">
+              <div class="bar-fill"
+                   style="width:${assignmentProgress}%">
+              </div>
+            </div>
+
+            <p style="margin-top:20px;">
+              ${
+                distractions === 0
+                  ? "You avoided social media interruptions during this session."
+                  : `You checked social media ${distractions}
+                     time(s). Consider how frequently this
+                     happens during real study sessions.`
+              }
+            </p>
+          </div>
+
+          <p class="small muted">
+            These results are simulated for educational
+            purposes and do not represent measured
+            academic outcomes.
+          </p>
+
+          <div class="actions">
+            <button onclick="navigate(3)">
+              Explore Healthy Habits →
+            </button>
+
+            <button class="outline"
+                    onclick="restartSimulation()">
+              Try Simulation Again
+            </button>
+          </div>
+        </section>
+      `;
+    }
+
+    function restartSimulation() {
+      assignmentProgress = 0;
+      distractions = 0;
+      minutesLost = 0;
+      actions = 0;
+      focusMode = false;
+      viewingFeed = false;
+
+      navigate(1);
+    }
+
+    // SCREEN 4: HEALTHY HABITS
+
+    function renderHabits() {
+      app.innerHTML = `
+        <section>
+          <p class="small muted">04 / HEALTHY HABITS</p>
+          <h2>Take Back Your Focus.</h2>
+
+          <p class="muted">
+            Explore practical strategies for creating
+            a healthier relationship with social media.
+            Click each card to learn more.
+          </p>
+
+          ${tips.map((tip, index) => `
+            <div class="tip">
+              <button
+                onclick="toggleTip(${index})"
+                aria-expanded="false"
+                id="tipButton${index}"
+              >
+                ${tip.icon} ${tip.title}
+                <span style="float:right;">+</span>
+              </button>
+
+              <div
+                id="tip${index}"
+                class="tip-content"
+                hidden
+              >
+                ${tip.description}
+              </div>
+            </div>
+          `).join("")}
+
+          <div class="actions">
+            <button onclick="navigate(4)">
+              Create My Action Plan →
+            </button>
+
+            <button class="outline"
+                    onclick="navigate(2)">
+              ← Back to Results
+            </button>
+          </div>
+        </section>
+      `;
+    }
+
+    function toggleTip(index) {
+      const content = document.getElementById(
+        `tip${index}`
+      );
+
+      const button = document.getElementById(
+        `tipButton${index}`
+      );
+
+      content.hidden = !content.hidden;
+
+      button.setAttribute(
+        "aria-expanded",
+        String(!content.hidden)
+      );
+
+      button.querySelector("span").textContent =
+        content.hidden ? "+" : "−";
+    }
+
+    // SCREEN 5: PERSONAL ACTION PLAN
+
+    function renderActionPlan() {
+      app.innerHTML = `
+        <section>
+          <p class="small muted">05 / ACTION PLAN</p>
+          <h2>Make a Small Change.</h2>
+
+          <p class="muted">
+            Choose one or more healthy habits
+            you want to try this week.
+          </p>
+
+          ${habits.map((habit, index) => `
+            <label class="habit">
+              <input
+                type="checkbox"
+                value="${index}"
+                ${selectedHabits.includes(index)
+                  ? "checked" : ""}
+                onchange="updateHabit(${index}, this.checked)"
+              >
+              <span>${habit}</span>
+            </label>
+          `).join("")}
+
+          <div id="personalPlan" aria-live="polite"></div>
+
+          <div class="actions">
+            <button onclick="createPlan()">
+              Create My Plan
+            </button>
+
+            <button class="outline"
+                    onclick="restartExperience()">
+              Restart Experience
+            </button>
+          </div>
+        </section>
+      `;
+    }
+
+    function updateHabit(index, checked) {
+      if (checked) {
+        if (!selectedHabits.includes(index)) {
+          selectedHabits.push(index);
+        }
+      } else {
+        selectedHabits = selectedHabits.filter(
+          item => item !== index
+        );
+      }
+    }
+
+    function createPlan() {
+      const container = document.getElementById(
+        "personalPlan"
+      );
+
+      if (selectedHabits.length === 0) {
+        container.innerHTML = `
+          <p style="color:#ffe4a3;" role="alert">
+            Please select at least one habit.
+          </p>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="message">
+          <h3>✓ Your Personal Action Plan</h3>
+
+          <p>This week, I will:</p>
+
+          <ul>
+            ${selectedHabits.map(index => `
+              <li>${habits[index]}</li>
+            `).join("")}
+          </ul>
+
+          <p>
+            Small changes can help build healthier
+            digital habits. You've got this!
+          </p>
+        </div>
+      `;
+    }
+
+    function restartExperience() {
+      assignmentProgress = 0;
+      distractions = 0;
+      minutesLost = 0;
+      actions = 0;
+      focusMode = false;
+      viewingFeed = false;
+      selectedHabits = [];
+
+      navigate(0);
+    }
+
+    // START APPLICATION
+
+    render();
+  </script>
+
+</body>
+</html>
